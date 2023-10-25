@@ -1,7 +1,7 @@
 package ru.emelianov.collection.task1;
 
-import java.util.Collection;
-import java.util.List;
+import java.lang.management.GarbageCollectorMXBean;
+import java.util.*;
 
 /**
  * Дано:
@@ -32,7 +32,17 @@ import java.util.List;
 public class Task1 {
 
     public static List<User> findDuplicates(Collection<User> collA, Collection<User> collB) {
-        // TODO
-        return null;
+        Set<User> setA = new HashSet<>(collA);
+        Set<User> setB = new HashSet<>(collB);
+
+        List<User> duplicates = new ArrayList<>();
+
+        for (User userA : setA) {
+            if (setB.contains(userA)) {
+                duplicates.add(userA);
+            }
+        }
+
+        return duplicates;
     }
 }
