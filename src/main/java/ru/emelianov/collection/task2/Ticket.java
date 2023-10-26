@@ -7,6 +7,19 @@ package ru.emelianov.collection.task2;
  * @since 25.10.2023
  */
 public class Ticket {
-    private long id;
-    private String client;
+    private final long id;
+    private final String client;
+
+    public Ticket(long id, String client) {
+        this.id = id;
+        this.client = client;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getClient() {
+        return client;
+    }
 }
