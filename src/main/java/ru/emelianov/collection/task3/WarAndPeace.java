@@ -2,6 +2,7 @@ package ru.emelianov.collection.task3;
 
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -23,13 +24,15 @@ public class WarAndPeace {
 
     public static void main(String[] args) {
         WordParser wordParser = new WordParser(WAR_AND_PEACE_FILE_PATH);
-        Map<String, Integer> wordFrequencyMap = new HashMap<>();
+        Map<String, Integer> wordFrequencyMap = new LinkedHashMap<>();
 
         // Частота слов
         wordParser.forEachWord(word -> wordFrequencyMap.merge(word, 1, Integer::sum));
 
         // Сортировка слов по их частоте
-        List<Map.Entry<String, Integer>> sortedWords = wordFrequencyMap.entrySet().stream()
+        List<Map.Entry<String, Integer>> sortedWords = wordFrequencyMap
+                .entrySet()
+                .stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .collect(Collectors.toList());
 
