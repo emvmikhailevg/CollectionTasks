@@ -1,6 +1,7 @@
 package ru.emelianov.collection.task2;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Дано:
@@ -25,30 +26,16 @@ import java.util.List;
  * @since 25.10.2023
  */
 public class Task2 {
+    private static final Map<Ticket, Goods> goodsByTicket = new HashMap<>();
+
+    // Итоговая сложность нахождения необходимых товаров по билету O(1)
     public static void main(String[] args) {
-        TicketManager ticketManager = new TicketManager();
+        Ticket ticket = new Ticket(456, "Sasha");
+        goodsByTicket.put(ticket, Goods.DRINKS);
+        getGoods(ticket);
+    }
 
-        Product drink1 = new Product("Coca-Cola", 2.5);
-        Product drink2 = new Product("Pepsi", 2.0);
-        Product food1 = new Product("Burger", 5.0);
-        Product food2 = new Product("Pizza", 8.0);
-
-        ticketManager.addProductToTicket(12345, drink1);
-        ticketManager.addProductToTicket(12345, food1);
-        ticketManager.addProductToTicket(67890, drink2);
-        ticketManager.addProductToTicket(54321, food2);
-
-        // Пример поиска товаров по номеру билета
-        int ticketIdToFind = 12345;
-        List<Product> products = ticketManager.getProductsForTicket(ticketIdToFind);
-
-        if (products.isEmpty()) {
-            System.out.println("Нет товаров");
-        } else {
-            System.out.println("Дополнительные товары для билета " + ticketIdToFind + ":");
-            for (Product product : products) {
-                System.out.println(product.getName() + " - $" + product.getPrice());
-            }
-        }
+    private static void getGoods(Ticket ticket) {
+        System.out.println(goodsByTicket.get(ticket));
     }
 }
