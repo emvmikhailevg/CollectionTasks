@@ -1,6 +1,5 @@
 package ru.emelianov.collection.task1;
 
-import java.lang.management.GarbageCollectorMXBean;
 import java.util.*;
 
 /**
@@ -31,18 +30,22 @@ import java.util.*;
  */
 public class Task1 {
 
+    /**
+     * Возвращает дубликаты пользователей
+     */
     public static List<User> findDuplicates(Collection<User> collA, Collection<User> collB) {
-        Set<User> setA = new HashSet<>(collA);
-        Set<User> setB = new HashSet<>(collB);
-
         List<User> duplicates = new ArrayList<>();
 
-        for (User userA : setA) {
-            if (setB.contains(userA)) {
-                duplicates.add(userA);
+        // HashSet проверяет наличие элемента за констатное время
+        Set<User> hashSet = new HashSet<>(collB);
+
+        for (User user : collA) {
+            if (hashSet.contains(user)) {
+                duplicates.add(user);
             }
         }
 
         return duplicates;
+        // Итоговая сложность O(n)
     }
 }
