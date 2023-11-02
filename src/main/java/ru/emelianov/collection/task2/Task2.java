@@ -1,5 +1,8 @@
 package ru.emelianov.collection.task2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Дано:
  * <pre>
@@ -23,6 +26,16 @@ package ru.emelianov.collection.task2;
  * @since 25.10.2023
  */
 public class Task2 {
+    private static final Map<Ticket, Goods> goodsByTicket = new HashMap<>();
 
-    // TODO
+    // Итоговая сложность нахождения необходимых товаров по билету O(1)
+    public static void main(String[] args) {
+        Ticket ticket = new Ticket(456, "Sasha");
+        goodsByTicket.put(ticket, Goods.DRINKS);
+        getGoods(ticket);
+    }
+
+    private static void getGoods(Ticket ticket) {
+        System.out.println(goodsByTicket.get(ticket));
+    }
 }
