@@ -1,7 +1,6 @@
 package ru.emelianov.collection.task1;
 
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Дано:
@@ -31,8 +30,22 @@ import java.util.List;
  */
 public class Task1 {
 
+    /**
+     * Возвращает дубликаты пользователей
+     */
     public static List<User> findDuplicates(Collection<User> collA, Collection<User> collB) {
-        // TODO
-        return null;
+        List<User> duplicates = new ArrayList<>();
+
+        // HashSet проверяет наличие элемента за констатное время
+        Set<User> hashSet = new HashSet<>(collB);
+
+        for (User user : collA) {
+            if (hashSet.contains(user)) {
+                duplicates.add(user);
+            }
+        }
+
+        return duplicates;
+        // Итоговая сложность O(n)
     }
 }
